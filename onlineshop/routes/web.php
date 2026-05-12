@@ -14,5 +14,5 @@ Route::get('/product/{id}', [ProductController::class, 'show']);
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index']);
     Route::post('/cart/add/{id}', [CartController::class, 'add']);
-    Route::delete('/cart/{id}', [CartController::class, 'remove']);
+    Route::post('/cart/remove/{id}', [CartController::class, 'remove']);
 });

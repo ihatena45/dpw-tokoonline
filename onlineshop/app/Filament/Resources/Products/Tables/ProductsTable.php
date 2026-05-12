@@ -27,7 +27,8 @@ class ProductsTable
                     ->searchable(),
 
                 TextColumn::make('price')
-                    ->money()
+                    ->numeric()
+                    ->prefix('IDR ')
                     ->sortable(),
 
                 TextColumn::make('stock')

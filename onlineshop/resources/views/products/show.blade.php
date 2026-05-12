@@ -32,13 +32,23 @@
         {{ $product->stock }}
     </p>
 
-    <form action="/cart/add/{{ $product->id }}" method="POST">
-        @csrf
+    @if ($product->stock > 0)
 
-        <button type="submit">
-            Add to Cart
+        <form action="/cart/add/{{ $product->id }}" method="POST">
+            @csrf
+
+            <button type="submit">
+                Add to Cart
+            </button>
+        </form>
+
+    @else
+
+        <button disabled>
+            Out of Stock
         </button>
-    </form>
+
+    @endif
 
     <p>
         {{ $product->description }}
