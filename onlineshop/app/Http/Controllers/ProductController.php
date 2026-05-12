@@ -3,15 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::with('seller', 'categories')->get();
+    // public function index()
+    // {
+    //     $products = Product::with('seller', 'categories')->get();
 
-        return view('products.index', compact('products'));
+    //     return view('products.index', compact('products'));
+    // }
+
+        public function index(Request $request)
+    {
+        $query = Product::query();
+
+        // Search
+        if ($request->search) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        // Filter category
+        if ($request->category) {
+            $query->where('category_id', $request->category);
+        }
+
+        $products = $query->latest()->get();
+
+        $categories = Category::all();
+
+        return view('products.index', compact('products', 'categories'));
     }
 
     public function create()

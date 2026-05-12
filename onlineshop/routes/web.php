@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProductController::class, 'index']);
 
-Route::resource('products', ProductController::class);
+Route::get('/product/{id}', [ProductController::class, 'show']);
+
+// Route::resource('products', ProductController::class);
 
 Route::middleware('auth')->group(function () {
 
