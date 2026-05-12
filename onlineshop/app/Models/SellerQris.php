@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class SellerQris extends Model
 {
@@ -15,7 +16,7 @@ class SellerQris extends Model
         'account_name',
     ];
 
-    public function seller()
+    public function seller(): BelongsTo
     {
         return $this->belongsTo(User::class, 'seller_id');
     }
