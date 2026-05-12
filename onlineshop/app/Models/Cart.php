@@ -10,6 +10,8 @@ class Cart extends Model
 {
     protected $fillable = [
         'buyer_id',
+        'product_id',
+        'quantity',
     ];
 
     public function buyer(): BelongsTo
@@ -20,5 +22,10 @@ class Cart extends Model
     public function items(): HasMany
     {
         return $this->hasMany(CartItem::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 }

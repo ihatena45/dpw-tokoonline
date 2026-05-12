@@ -32,6 +32,14 @@
         {{ $product->stock }}
     </p>
 
+    <form action="/cart/add/{{ $product->id }}" method="POST">
+        @csrf
+
+        <button type="submit">
+            Add to Cart
+        </button>
+    </form>
+
     <p>
         {{ $product->description }}
     </p>
