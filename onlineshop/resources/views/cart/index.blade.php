@@ -45,21 +45,9 @@
                 Rp {{ number_format($subtotal) }}
             </p>
 
-            <form action="/cart/add/{{ $cart->product->id }}" method="POST">
-                @csrf
-
-                <button type="submit">
-                    +
-                </button>
-            </form>
-
-            <form action="/cart/remove/{{ $cart->id }}" method="POST">
-                @csrf
-
-                <button type="submit">
-                    -
-                </button>
-            </form>
+            <a href="/cart/remove/{{ $cart->id }}">
+                Remove
+            </a>
 
         </div>
 
