@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Online Shop</title>
 
@@ -28,15 +29,14 @@
         }
     </style>
 </head>
+
 <body>
 
     <h1>Product Catalog</h1>
 
     <form method="GET">
 
-        <input type="text"
-               name="search"
-               placeholder="Search product">
+        <input type="text" name="search" placeholder="Search product">
 
         <select name="category">
 
@@ -91,5 +91,32 @@
 
     </div>
 
+    <div style="display:flex; gap:10px; align-items:center;">
+
+        <span>
+            Hi, {{ Auth::user()->name }}
+        </span>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+
+            <button
+                type="submit"
+                style="
+                    background:red;
+                    color:white;
+                    border:none;
+                    padding:8px 14px;
+                    border-radius:6px;
+                    cursor:pointer;
+                "
+            >
+                Logout
+            </button>
+        </form>
+
+    </div>
+
 </body>
+
 </html>
