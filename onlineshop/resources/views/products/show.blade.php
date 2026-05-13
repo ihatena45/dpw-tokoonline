@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>{{ $product->name }}</title>
 </head>
+
 <body>
 
     <a href="/">
@@ -13,9 +15,7 @@
         {{ $product->name }}
     </h1>
 
-    <img
-        src="{{ asset('storage/' . $product->image) }}"
-        width="300">
+    <img src="{{ asset('storage/' . $product->image) }}" width="300">
 
     <p>
         Category:
@@ -32,17 +32,26 @@
         {{ $product->stock }}
     </p>
 
-    <form action="/cart/add/{{ $product->id }}" method="POST">
-        @csrf
+    @if ($product->stock > 0)
 
-        <button type="submit">
-            Add to Cart
+        <form action="/cart/add/{{ $product->id }}" method="POST">
+            @csrf
+
+            <button type="submit">
+                Add to Cart
+            </button>
+        </form>
+
+    @else
+
+        <button disabled>
+            Out of Stock
         </button>
-    </form>
+
+    @endif
 
     <p>
         {{ $product->description }}
     </p>
 
 </body>
-</html>

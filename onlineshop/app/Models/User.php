@@ -19,7 +19,6 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
-        'role',
     ];
 
     protected $hidden = [
@@ -37,7 +36,7 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Product::class, 'seller_id');
     }
 
-    public function carts(): HasMany
+    public function carts()
     {
         return $this->hasMany(Cart::class, 'buyer_id');
     }

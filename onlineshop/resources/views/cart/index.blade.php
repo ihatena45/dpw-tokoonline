@@ -7,7 +7,7 @@
 
     <h1>Your Cart</h1>
 
-    <a href="/">
+    <a href="/products">
         Back To Shop
     </a>
 
@@ -45,9 +45,21 @@
                 Rp {{ number_format($subtotal) }}
             </p>
 
-            <a href="/cart/remove/{{ $cart->id }}">
-                Remove
-            </a>
+            <form action="/cart/add/{{ $cart->product->id }}" method="POST">
+                @csrf
+
+                <button type="submit">
+                    +
+                </button>
+            </form>
+
+            <form action="/cart/remove/{{ $cart->id }}" method="POST">
+                @csrf
+
+                <button type="submit">
+                    -
+                </button>
+            </form>
 
         </div>
 

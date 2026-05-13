@@ -26,8 +26,10 @@ class CartController extends Controller
             ->first();
 
         if ($cart) {
-            $cart->increment('quantity');
+
+            $cart->increment('quantity', 1);
         } else {
+
             Cart::create([
                 'buyer_id' => Auth::id(),
                 'product_id' => $product->id,
@@ -35,8 +37,7 @@ class CartController extends Controller
             ]);
         }
 
-        return redirect('/cart')
-            ->with('success', 'Product added to cart');
+        return redirect('/cart');
     }
 
     public function remove(int $id)
@@ -44,9 +45,15 @@ class CartController extends Controller
         $cart = Cart::where('buyer_id', Auth::id())
             ->findOrFail($id);
 
-        $cart->delete();
+        if ($cart->quantity > 1) {
+
+            $cart->decrement('quantity');
+        } else {
+
+            $cart->delete();
+        }
 
         return redirect('/cart')
-            ->with('success', 'Product removed from cart');
+            ->with('success', 'Cart updated');
     }
 }
